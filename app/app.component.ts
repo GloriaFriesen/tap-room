@@ -18,8 +18,8 @@ import { Component } from '@angular/core';
         <button (click)="editKeg(currentKeg)">Edit!</button>
       </li>
     </ul>
-    <label>Enter Task Description:</label>
-      <input [(ngModel)]="selectedKeg.description">
+    <label>Enter Keg Name:</label>
+      <input [(ngModel)]="selectedKeg.name">
   </div>
   `
 })
