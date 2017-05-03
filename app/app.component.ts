@@ -15,8 +15,11 @@ import { Component } from '@angular/core';
         <li>Pints Remaining: {{currentKeg.pintsLeft}}</li>
         </ul>
         <button (click)="sellPint(currentKeg)">Sell a Pint</button>
+        <button (click)="editKeg(currentKeg)">Edit!</button>
       </li>
     </ul>
+    <label>Enter Task Description:</label>
+      <input [(ngModel)]="selectedKeg.description">
   </div>
   `
 })
@@ -27,6 +30,14 @@ export class AppComponent {
     new Keg('Union Pilsner', 'Old Town Brewing', 'Pilsner', 5, '5.0%'),
     new Keg('Blue Dot Double India Pale Ale', 'Hair Of The Dog', 'Pale Ale', 5, '7.0%')
   ];
+
+  selectedKeg: Keg = this.kegs[0];
+
+  editKeg(clickedKeg){
+    this.selectedKeg = clickedKeg;
+  }
+
+
 
   sellPint(currentKeg) {
     currentKeg.pintsLeft = currentKeg.pintsLeft - 1;
