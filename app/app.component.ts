@@ -18,8 +18,29 @@ import { Component } from '@angular/core';
         <button (click)="editKeg(currentKeg)">Edit!</button>
       </li>
     </ul>
-    <label>Enter Keg Name:</label>
-      <input [(ngModel)]="selectedKeg.name">
+    <div *ngIf="selectedKeg">
+      <div class="form-group">
+        <label>Enter Keg Name:</label>
+        <input [(ngModel)]="selectedKeg.name">
+      </div>
+      <div class="form-group">
+        <label>Enter Brewery:</label>
+        <input [(ngModel)]="selectedKeg.brewery">
+      </div>
+      <div class="form-group">
+        <label>Enter Style:</label>
+        <input [(ngModel)]="selectedKeg.type">
+      </div>
+      <div class="form-group">
+        <label>Enter Price:</label>
+        <input [(ngModel)]="selectedKeg.price">
+      </div>
+      <div class="form-group">
+        <label>Enter Alcohol Content:</label>
+        <input [(ngModel)]="selectedKeg.alcoholContent">
+      </div>
+      <button (click)="finishedEditing()">Done</button>
+    </div>
   </div>
   `
 })
@@ -31,12 +52,15 @@ export class AppComponent {
     new Keg('Blue Dot Double India Pale Ale', 'Hair Of The Dog', 'Pale Ale', 5, '7.0%')
   ];
 
-  selectedKeg: Keg = this.kegs[0];
+  selectedKeg: null;
 
   editKeg(clickedKeg){
     this.selectedKeg = clickedKeg;
   }
 
+  finishedEditing() {
+    this.selectedKeg = null;
+  }
 
 
   sellPint(currentKeg) {
