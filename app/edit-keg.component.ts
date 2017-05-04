@@ -19,11 +19,11 @@ import { Keg } from './keg.model';
     </div>
     <div class="form-group">
       <label>Enter Price:</label>
-      <input [(ngModel)]="childSelectedKeg.price">
+      <input type="number" step=".25" [(ngModel)]="childSelectedKeg.price">
     </div>
     <div class="form-group">
       <label>Enter Alcohol Content:</label>
-      <input [(ngModel)]="childSelectedKeg.alcoholContent">
+      <input type="number" step=".1" [(ngModel)]="childSelectedKeg.alcoholContent">
     </div>
     <button (click)="doneButtonClicked()">Done</button>
   </div>

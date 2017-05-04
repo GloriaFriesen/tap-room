@@ -15,7 +15,7 @@ import { Keg } from './keg.model'
       by {{currentKeg.brewery}}
       <ul>
       <li>Style: {{currentKeg.type}}</li>
-      <li>Price: <span>$</span>{{currentKeg.price}}</li>
+      <li>Price: <span>$</span>{{currentKeg.price | number:'1.2-2'}}</li>
       <li>Alcohol Content: {{currentKeg.alcoholContent}}%</li>
       <li>Pints Remaining: {{currentKeg.pintsLeft}}</li>
       <button (click)="sellPintButtonClicked(currentKeg)">Sell a Pint</button>
