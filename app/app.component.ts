@@ -8,7 +8,8 @@ import { Keg } from './keg.model';
   <div class="container">
     <h1>KEG-EKG</h1>
     <keg-list [childKegList]="masterKegList" (clickSender)="editKeg($event)" (clickSellPintSender)="sellPint($event)"></keg-list>
-    <edit-keg [childSelectedKeg]="selectedKeg" (doneButtonClickedSender)="finishedEditing()"></edit-keg>  
+    <edit-keg [childSelectedKeg]="selectedKeg" (doneButtonClickedSender)="finishedEditing()"></edit-keg>
+    <new-keg (newKegSender)="addKeg($event)"></new-keg>
   </div>
   `
 })
@@ -17,9 +18,9 @@ export class AppComponent {
   selectedKeg: null;
 
   masterKegList: Keg[] = [
-    new Keg('Drop Top Amber Ale', 'Widmer Brothers', 'Amber', 5, '5.3%'),
-    new Keg('Union Pilsner', 'Old Town Brewing', 'Pilsner', 5, '5.0%'),
-    new Keg('Blue Dot Double India Pale Ale', 'Hair Of The Dog', 'Pale Ale', 5, '7.0%')
+    new Keg('Drop Top Amber Ale', 'Widmer Brothers', 'Amber', 5, '5.3'),
+    new Keg('Union Pilsner', 'Old Town Brewing', 'Pilsner', 5, '5.0'),
+    new Keg('Blue Dot Double India Pale Ale', 'Hair Of The Dog', 'Pale Ale', 5, '7.0')
   ];
 
   editKeg(clickedKeg){
@@ -32,5 +33,9 @@ export class AppComponent {
 
   sellPint(currentKeg) {
     currentKeg.pintsLeft = currentKeg.pintsLeft - 1;
+  }
+
+  addKeg(newKegFromChild: Keg) {
+    this.masterKegList.push(newKegFromChild);
   }
 }
