@@ -4,8 +4,14 @@ import { Keg } from './keg.model'
 @Component ({
   selector: 'keg-list',
   template: `
+  <select (change)="onSelect($event.target.value)">
+    <option value="allKegs">All Kegs</option>
+    <option value="tappedKegs" selected="selected">Tapped Kegs</option>
+    <option value="emptyKegs">Empty Kegs</option>
+  </select>
+
   <ul>
-    <li *ngFor="let currentKeg of childKegList">{{currentKeg.name}}
+    <li *ngFor="let currentKeg of childKegList | emptiness:filterByEmptiness">{{currentKeg.name}}
       by {{currentKeg.brewery}}
       <ul>
       <li>Style: {{currentKeg.type}}</li>
@@ -31,5 +37,11 @@ export class KegListComponent {
 
   sellPintButtonClicked(kegToSell: Keg) {
     this.clickSellPintSender.emit(kegToSell);
+  }
+
+  filterByEmptiness: string = "tappedKegs";
+
+  onSelect(optionFromMenu) {
+    this.filterByEmptiness = optionFromMenu;
   }
 }

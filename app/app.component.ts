@@ -32,7 +32,11 @@ export class AppComponent {
   }
 
   sellPint(currentKeg) {
-    currentKeg.pintsLeft = currentKeg.pintsLeft - 1;
+    if (currentKeg.pintsLeft >= 1) {
+      currentKeg.pintsLeft = currentKeg.pintsLeft - 1;
+    } else {
+      currentKeg.empty = true;
+    }
   }
 
   addKeg(newKegFromChild: Keg) {

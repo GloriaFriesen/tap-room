@@ -34,8 +34,8 @@ import { Keg } from './keg.model';
 export class NewKegComponent {
   @Output() newKegSender = new EventEmitter();
 
-  submitForm(name: string, brewery: string, type: string, price: number, alcoholContent: string) {
-    var newKegToAdd: Keg = new Keg(name, brewery, type, price, alcoholContent);
+  submitForm(name: string, brewery: string, type: string, price: string, alcoholContent: string) {
+    var newKegToAdd: Keg = new Keg(name, brewery, type, parseInt(price), alcoholContent);
     this.newKegSender.emit(newKegToAdd);
   }
 }
